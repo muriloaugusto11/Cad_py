@@ -2,6 +2,7 @@ import getpass
 
 print("--||Cadastro||--")
 
+#(Falta limitar campo nome)
 nome = input("Digite seu nome: ")
 endereço = input("Digite seu endereço: ")
 sexo = input("Digite seu sexo (Feminino/Masculino): " ).upper()
@@ -28,20 +29,36 @@ while len(celular) != 11:
    print("Tamanho inválido, você forneceu", len(celular), "quando na verdade deve ser 11, ")
    celular = input("Digite o número de celular novamente: ")
 
+#(falta limitar caracteres especiais)
+login = input("Digite um login: ")
+while len(login) <3 or len(login) > 16:
+  print("Login inválido, o login deve ter no 3 caractéres e no máximo 16 caractéres e voce forneceu", len(login))
+  login = input("Digite um login novamente: ")
+
+#(Falta obrigar uma letra maiuscula e uma mínima e aumentar o tamanho mínimo para 10)
 senha = input("Digite uma Senha: ")
 while len(senha) < 8 or len(senha) > 16:
   print("Senha inválida, a senha deve ter no mínimo 8 caractéres e no máximo 16 caractéres e você forneceu", len(senha))
   senha = input("Digite uma Senha novamente: ")
+
 conf_senha = input("Confirmação de senha: ")
 while senha != conf_senha:
   print("As senhas não batem! Digite novamente")
   senha = input("Senha: ")
   conf_senha = input("Confirmação de senha: ")
 
-t_senha = getpass.getpass("Digite sua senha de acesso: ")
-while t_senha != senha:
-  if t_senha == senha:
+l_login = input("Digite seu login de acesso: ")
+while l_login != login:
+  if l_login == login:
+    print("ok")
+  
+
+l_senha = getpass.getpass("Digite sua senha de acesso: ")
+while l_senha != senha and l_login != login:
+  if l_senha == senha and l_login == login:
     print("ok")
   else:
-    t_senha = getpass.getpass("Digite uma senha válida: ")
+    l_login = input("Digite um login de acesso válido: ")
+    l_senha = getpass.getpass("Digite uma senha válida: ")
 print("Seja bem vindo!")
+
