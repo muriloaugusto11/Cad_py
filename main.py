@@ -14,7 +14,7 @@ def cad():
     address = input("Digite um endereço: ")
     print(address)
 
-    sex = input("Digite um sexo (Feminino/Masculino): " ).upper()
+    sex = input("Digite um sexo (Feminino/Masculino): ").upper()
     while sex != "F" and sex != "M" and sex != "FEMININO" and sex != "MASCULINO":
       print("Sexo Inválido!")
       sex = input("Digite seu Sexo (Feminino(F)/Masculino(M): ")
