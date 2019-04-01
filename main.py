@@ -29,8 +29,12 @@ print("--||Cadastro||--")
 #   "quando na verdade deve ser 11, ")
 #  celular = input("Digite o número de celular novamente: ")
 
-senha = input("")
-conf_senha = input("")
+senha = input("Senha: ")
+conf_senha = input("Confirmação de senha: ")
+while senha != conf_senha:
+  print("As senhas não batem! Digite novamente")
+  senha = input("Senha: ")
+  conf_senha = input("Confirmação de senha: ")
 
 senha = getpass.getpass("Digite sua senha de acesso: ")
 while senha != '123321':
@@ -39,4 +43,3 @@ while senha != '123321':
   else:
     senha = getpass.getpass("Digite uma senha válida: ")
 print("Seja bem vindo!")
-
