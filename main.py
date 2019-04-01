@@ -4,6 +4,9 @@ print("--||Cadastro||--")
 
 #(Falta limitar campo nome)
 name = input("Digite seu nome: ")
+while len(name) <3:
+  print("Nome inválido, o tamanho mínimo de um nome deve ser 3 e você digitou:", len(name))
+  name = input("Digite um nome válido: ")
 address = input("Digite seu endereço: ")
 sex = input("Digite seu sexo (Feminino/Masculino): " ).upper()
 while sex != "F" and sex != "M" and sex != "FEMININO" and sex != "MASCULINO":
