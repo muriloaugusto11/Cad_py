@@ -46,19 +46,14 @@ while senha != conf_senha:
   print("As senhas não batem! Digite novamente")
   senha = input("Senha: ")
   conf_senha = input("Confirmação de senha: ")
-
-l_login = input("Digite seu login de acesso: ")
-while l_login != login:
-  if l_login == login:
-    print("ok")
-  
-
-l_senha = getpass.getpass("Digite sua senha de acesso: ")
-while l_senha != senha and l_login != login:
-  if l_senha == senha and l_login == login:
+    
+l_login = input("Digite um login: ")    
+l_senha = getpass.getpass("Digite uma senha: ")    
+while l_login != login and l_senha != senha:
+  print("Login ou senha inválidos!")
+  l_login = input("Digite um Login válido: ")
+  l_senha = getpass.getpass("Digite uma senha válida: ")
+  if l_login == login and l_senha == senha:
     print("ok")
   else:
-    l_login = input("Digite um login de acesso válido: ")
-    l_senha = getpass.getpass("Digite uma senha válida: ")
-print("Seja bem vindo!")
-
+    print()
