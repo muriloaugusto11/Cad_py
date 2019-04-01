@@ -5,6 +5,7 @@ def cad():
     print("_\|/__Cadastro__\|/_")
     print("_/|\__Alternat__/|\_")
 
+    pass_login_list = []
     #name = input("TYPE A NAME: ")
     #while len(name) <3:
     #  print("Nome inválido, o tamanho mínimo de um nome deve ser 3 e você digitou:", len(name))
@@ -57,6 +58,8 @@ def cad():
       password = input("PASSWORD: ")
       c_password = input("PASSWORD CONFIRMATION: ")
 
+    pass_login_list.append(password + "-" + login) 
+    print(pass_login_list)
 def log():
 
     print(login)
