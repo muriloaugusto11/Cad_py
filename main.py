@@ -9,18 +9,26 @@ print("--||Cadastro||--")
 #  print("Sexo Inválido!")
 #  sexo = input("Digite seu sexo (Feminino(F)/Masculino(M): " )
 #print(sexo)
-cpf = input("Digite seu cpf: ")
-while len(cpf) != 11:
-  if len(cpf) < 11:
-    print("Tamanho de CPF menor que o permitido!")
-    print("O campo CPF deve ter 11 caracteres e você forneceu", len(cpf))
-    cpf = input("Digite seu cpf: ")
-  if len(cpf) > 11:
-    print("Tamanho de CPF maior que o permitido!")
-    print("O campo CPF deve ter 11 caracteres e você forneceu", len(cpf))
-    cpf = input("Digite novamente seu CPF: ")  
 
-celular = input("Digite seu celular: ")
+#(falta limitar a apenas números)
+#cpf = input("Digite seu cpf: ")
+#while len(cpf) != 11:
+#  if len(cpf) < 11:
+#    print("Tamanho de CPF menor que o permitido!")
+#    print("O campo CPF deve ter 11 caracteres e você forneceu", len(cpf))
+#    cpf = input("Digite seu cpf: ")
+#  if len(cpf) > 11:
+#    print("Tamanho de CPF maior que o permitido!")
+#    print("O campo CPF deve ter 11 caracteres e você forneceu", len(cpf))
+#    cpf = input("Digite novamente seu CPF: ")  
+
+#(falta limitar a apenas números)
+#celular = input("Digite seu celular: ")
+#while len(celular) != 11:
+#  print("Tamanho inválido, você forneceu", len(celular),
+#   "quando na verdade deve ser 11, ")
+#  celular = input("Digite o número de celular novamente: ")
+
 senha = input("")
 conf_senha = input("")
 
