@@ -15,6 +15,8 @@ def menu():
       logar()
     elif opt == "3":
       print("\n Programa finalizado")
+    elif opt == "4":
+      cad_password()
     else:
       print("Opção inválida")
 
@@ -36,7 +38,7 @@ def cad_name():
       else:
         print("Nome inválido!")
 
-      cad_name()
+    cad_name()
 
 def cad_cep():
     validation_cep = input("TYPE A CEP: ")
@@ -77,7 +79,7 @@ def cad_cpf():
       cad_cpf()
     elif len(validation_cpf) == 11:
       if re.match('^[0-9]+$', validation_cpf):
-      cpf = validation_cpf
+        cpf = validation_cpf
   
     cad_cel()
 
@@ -88,6 +90,7 @@ def cad_cel():
       cad_cel()
     elif len(validation_cel) == 11:
       if re.match('^[0-9]+$', validation_cel):
+        cel = validation_cel  
     cad_login()
 
 def cad_login():
@@ -95,15 +98,15 @@ def cad_login():
     if len(validation_login) < 3 or len(validation_login) > 16:
       print("Login inválido, o Login deve ter no 3 caractéres e no máximo 16 caractéres e você forneceu: ", len(validation_login))
     elif len(validation_login) > 3 and len(validation_login) < 17:
-      if re.match('^[a-zA-Z_ ]+$', validation_name):
-
+      if re.match('^[a-zA-Z_ ]+$', validation_login): 
+        login = validation_login
     cad_password()
 
 def cad_password():
     ##(Falta obrigar uma letra maiuscula e uma mínima e aumentar o tamanho mínimo para 10)
     password = input("ENTER A VALID PASSWORD: ")
-    while len(password) < 8 or len(password) > 16:
-      print("Senha inválida, a Senha deve ter no mínimo 8 caractéres e no máximo 16 caractéres e você forneceu: ", len(password))
+    while len(password) < 10 or len(password) > 16:
+      print("Senha inválida, a Senha deve ter no mínimo 10 caractéres e no máximo 16 caractéres e você forneceu: ", len(password))
       password = input("ENTER A VALID PASSWORD: ")
 
     c_password = input("ENTER A VALID PASSWORD AGAIN TO CONFIRM: ")
@@ -111,6 +114,13 @@ def cad_password():
       print("PASSWORDS DO NOT MATCH! ENTER A PASSWORD AGAIN: ")
       password = input("PASSWORD: ")
       c_password = input("PASSWORD CONFIRMATION: ")
+      print("teste")
+
+      if password == c_password:
+        if re.match('^[a-zA-Z_ ]+$', password) and re.match('^[a-zA-Z_ ]+$', c_password):
+      else:
+        print("Deu algum erro")
+        
     menu()
 
 def logar():
