@@ -9,16 +9,20 @@ def menu():
                     '\n [2] - LOG: ' +
                     '\n [3] - EXIT: \n \n ')
 
-    if opt == "1":
-        cad()
-    elif opt == "2":
-        logar()
-    elif opt == "3":
-        print("\n END PROGRAM!")
-    elif opt == "4":
-        cad_password()
-    else:
-        print("INVALID OPTION!")
+        if opt == "1":
+            cad()
+
+        elif opt == "2":
+            logar()
+
+        elif opt == "3":
+            print("\n END PROGRAM!")
+
+        elif opt == "4":
+            cad_password()
+            
+        else:
+            print("INVALID OPTION!")
 
 
 def cad():
