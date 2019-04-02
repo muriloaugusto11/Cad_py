@@ -35,6 +35,7 @@ def cad_name():
         cad_cep()
       else:
         print("Nome inválido!")
+
       cad_name()
 
 def cad_cep():
@@ -44,6 +45,7 @@ def cad_cep():
     else:
       print("CEP inválido!")
       cad_cep()
+
     cad_address()
 
 def cad_address():
@@ -53,6 +55,7 @@ def cad_address():
     else:
       print("Invalid Address")
       cad_address
+
     cad_sex()
 
 def cad_sex():
@@ -61,38 +64,39 @@ def cad_sex():
       print("INVALID SEX!")
       sex = input("ENTER THE SEX (FEMALE(F)/MALE(M): ")
       print(sex)
+
     cad_cpf()
 
 def cad_cpf():
-    ##(falta limitar a apenas números)
-    cpf = int(input("ENTER A VALID CPF: "))
-
-    while len(cpf) != 11:
-      
-      if len(cpf) < 11:
-        print("Tamanho de CPF menor que o permitido!")
-        print("O campo CPF deve ter 11 caracteres e você forneceu: ", len(cpf))
-        cpf = input("ENTER A VALID CPF: ")
-      if len(cpf) > 11:
-        print("Tamanho de CPF maior que o permitido!")
-        print("O campo CPF deve ter 11 caracteres e você forneceu: ", len(cpf))
-        cpf = input("ENTER A VALID CPF: ")  
-      cad_cel()
+    validation_cpf = input("ENTER A VALID CPF: ")
+    if len(validation_cpf) < 11:
+      print("O campo CPF deve ter 11 caracteres e você forneceu: ", len(validation_cpf))
+      cad_cpf()
+    elif len(validation_cpf) > 11:
+      print("O campo CPF deve ter 11 caracteres e você forneceu: ", len(validation_cpf))
+      cad_cpf()
+    elif len(validation_cpf) == 11:
+      if re.match('^[0-9]+$', validation_cpf):
+      cpf = validation_cpf
+  
+    cad_cel()
 
 def cad_cel():
-    ##(falta limitar a apenas números)
-    cel = input("ENTER A VALID MOBILE NUMBER: ")
-    while len(cel) != 11:
-      print("Tamanho inválido, você forneceu", len(cel), "quando na verdade deve ser 11")
-      cel = input("ENTER A VALID MOBILE NUMBER: ")
+    validation_cel = input("ENTER A VALID MOBILE NUMBER: ")
+    if len(validation_cel) != 11:
+      print("Tamanho inválido, você forneceu", len(validation_cel), "quando na verdade deve ser 11")
+      cad_cel()
+    elif len(validation_cel) == 11:
+      if re.match('^[0-9]+$', validation_cel):
     cad_login()
 
 def cad_login():
-    ##(falta limitar caracteres especiais)
-    login = input("ENTER A VALID LOGIN: ")
-    while len(login) <3 or len(login) > 16:
-      print("Login inválido, o Login deve ter no 3 caractéres e no máximo 16 caractéres e você forneceu: ", len(login))
-      login = input("ENTER A VALID LOGIN: ")
+    validation_login = input("ENTER A VALID LOGIN: ")
+    if len(validation_login) < 3 or len(validation_login) > 16:
+      print("Login inválido, o Login deve ter no 3 caractéres e no máximo 16 caractéres e você forneceu: ", len(validation_login))
+    elif len(validation_login) > 3 and len(validation_login) < 17:
+      if re.match('^[a-zA-Z_ ]+$', validation_name):
+
     cad_password()
 
 def cad_password():
