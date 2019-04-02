@@ -12,7 +12,7 @@ def menu():
     if opt == "1":
       cad()
     elif opt == "2":
-      log()
+      logar()
     elif opt == "3":
       print("\n Programa finalizado")
     else:
@@ -98,7 +98,7 @@ def password():
       c_password = input("PASSWORD CONFIRMATION: ")
     menu()
 
-def log(a):
+def logar():
 
   print("\n Login")
   #login = cad()
