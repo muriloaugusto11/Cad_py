@@ -15,16 +15,16 @@ def menu():
     elif opt == "2":
         logar()
     elif opt == "3":
-        print("\n Programa finalizado")
+        print("\n END PROGRAM")
     elif opt == "4":
         cad_password()
     else:
-        print("Opção inválida")
+        print("INVALID OPTION")
 
 
 def cad():
 
-    print("\n Cadastro:")
+    print("\n REGISTER:")
     cad_name()
 
 
@@ -32,7 +32,7 @@ def cad_name():
 
     validation_name = input("TYPE A NAME: ")
     if len(validation_name) < 6:
-        print("Nome inválido, o tamanho mínimo de um nome deve ser 6 e você digitou:", len(validation_name))
+        print("Invalid name, the minimum length of a name should be 6 and you entered:", len(validation_name))
         cad_name()
 
     elif len(validation_name) > 6:
@@ -41,7 +41,7 @@ def cad_name():
             print(name)
             cad_cep()
         else:
-            print("Nome inválido!")
+            print("INVALID NAME!")
 
     cad_name()
 
@@ -52,7 +52,7 @@ def cad_cep():
     if re.match('^[0-9]+$', validation_cep):
         cep = validation_cep
     else:
-        print("CEP inválido!")
+        print("INVALID CEP!")
         cad_cep()
 
     cad_address()
@@ -64,7 +64,7 @@ def cad_address():
     if re.match('^[a-zA-Z ]+$', validation_address):
         address = validation_address
     else:
-        print("Invalid Address")
+        print("INVALID ADDRESS")
         cad_address
 
     cad_sex()
@@ -100,7 +100,7 @@ def cad_cel():
 
     validation_cel = input("ENTER A VALID MOBILE NUMBER: ")
     if len(validation_cel) != 11:
-        print("Tamanho inválido, você forneceu", len(validation_cel), "quando na verdade deve ser 11")
+        print("INVALID SIZE, YOU PROVIDE", len(validation_cel), "WHEN IN FACT IT SHOULD BE 11")
         cad_cel()
     elif len(validation_cel) == 11:
         if re.match('^[0-9]+$', validation_cel):
@@ -112,7 +112,7 @@ def cad_login():
 
     validation_login = input("ENTER A VALID LOGIN: ")
     if len(validation_login) < 3 or len(validation_login) > 16:
-        print("Login inválido, o Login deve ter no 3 caractéres e no máximo 16 caractéres e você forneceu: ", len(validation_login))
+        print("INVALID LOGIN, LOGIN MUST BR IN 3 CHARACTERS AND A MAXIMUM OF 16 CHARACTERS AND YOU HAVE PROVIDED: ", len(validation_login))
     elif len(validation_login) > 3 and len(validation_login) < 17:
         if re.match('^[a-zA-Z_ ]+$', validation_login):
             login = validation_login
@@ -124,7 +124,7 @@ def cad_password(): ##defeito aqui
 
     password = input("ENTER A VALID PASSWORD: ")
     while len(password) < 10 or len(password) > 16:
-        print("Senha inválida, a Senha deve ter no mínimo 10 caractéres e no máximo 16 caractéres e você forneceu: ", len(password))
+        print("INVALID PASSWORD, THE PASSWORD MUST BE AT LEAST 10 CHARACTERS AND A MAXIMUM OF 16 CHARACTERS AND YOU HAVE PROVIDED: ", len(password))
         password = input("ENTER A VALID PASSWORD: ")
 
     c_password = input("ENTER A VALID PASSWORD AGAIN TO CONFIRM: ")
@@ -154,9 +154,9 @@ def logar():
         l_login = input("ENTER A VALID LOGIN: ")
         p_password = getpass.getpass("ENTER A VALID PASSWORD: ")
     if l_login == login and p_password == password:
-        print("Corretos")
+        print()
     else:
-        print("aki")
+        print()
 
 
 menu()
