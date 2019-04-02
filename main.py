@@ -80,7 +80,6 @@ def cad_cpf():
     elif len(validation_cpf) == 11:
       if re.match('^[0-9]+$', validation_cpf):
         cpf = validation_cpf
-  
     cad_cel()
 
 def cad_cel():
@@ -102,7 +101,7 @@ def cad_login():
         login = validation_login
     cad_password()
 
-def cad_password():
+def cad_password(): ##defeito aqui
     ##(Falta obrigar uma letra maiuscula e uma mínima e aumentar o tamanho mínimo para 10)
     password = input("ENTER A VALID PASSWORD: ")
     while len(password) < 10 or len(password) > 16:
@@ -115,12 +114,13 @@ def cad_password():
       password = input("PASSWORD: ")
       c_password = input("PASSWORD CONFIRMATION: ")
       print("teste")
-
       if password == c_password:
+        print("to aqui")
         if re.match('^[a-zA-Z_ ]+$', password) and re.match('^[a-zA-Z_ ]+$', c_password):
+          print("Aloha")
       else:
         print("Deu algum erro")
-        
+      print(password, c_password)
     menu()
 
 def logar():
@@ -137,6 +137,6 @@ def logar():
     if l_login == login and p_password == password:
       print("Corretos")
     else:
-      print()
+      print("aki")
 
 menu()
