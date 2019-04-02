@@ -23,18 +23,18 @@ def cad():
     name()
 
 def name():
-    name_test = input("TYPE A NAME: ")
-    
-    if re.match('^[a-zA-Z0-9_]+$',name_test): 
-      name = name_test
+    validation_name = input("TYPE A NAME: ")
+
+    while len(validation_name) < 6:
+      print("Nome inválido, o tamanho mínimo de um nome deve ser 6 e você digitou:", len(validation_name))
+      validation_name = input("TYPE A VALID NAME: ")
+
+    if re.match('^[a-zA-Z0-9_]+$',validation_name): 
+      name = validation_name
       cep()
     else:
       print("Nome inválido!")
       name()
-
-    while len(name) < 6:
-      print("Nome inválido, o tamanho mínimo de um nome deve ser 6 e você digitou:", len(name))
-      name = input("TYPE A VALID NAME: ")
 
 def cep():
     cep = input("TYPE A CEP: ")
