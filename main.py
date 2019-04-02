@@ -132,14 +132,13 @@ def cad_password(): ##defeito aqui
         print("PASSWORDS DO NOT MATCH! ENTER A PASSWORD AGAIN: ")
         password = input("PASSWORD: ")
         c_password = input("PASSWORD CONFIRMATION: ")
-        print("teste")
         if password == c_password:
-            print("to aqui")
+            print()
         if re.match('^[a-zA-Z_ ]+$', password) and re.match('^[a-zA-Z_ ]+$', c_password):
-            print("Aloha")
+            print()
         else:
-            print("Deu algum erro")
-            print(password, c_password)
+            print()
+            
     menu()
 
 
