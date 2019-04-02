@@ -92,7 +92,7 @@ def cad_cpf():
         cad_cpf()
     elif len(validation_cpf) == 11:
         if re.match('^[0-9]+$', validation_cpf):
-        cpf = validation_cpf
+            cpf = validation_cpf
     cad_cel()
 
 
@@ -104,7 +104,7 @@ def cad_cel():
         cad_cel()
     elif len(validation_cel) == 11:
         if re.match('^[0-9]+$', validation_cel):
-        cel = validation_cel
+            cel = validation_cel
     cad_login()
 
 
@@ -115,7 +115,7 @@ def cad_login():
         print("Login inválido, o Login deve ter no 3 caractéres e no máximo 16 caractéres e você forneceu: ", len(validation_login))
     elif len(validation_login) > 3 and len(validation_login) < 17:
         if re.match('^[a-zA-Z_ ]+$', validation_login):
-        login = validation_login
+            login = validation_login
     cad_password()
 
 
