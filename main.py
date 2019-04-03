@@ -43,9 +43,7 @@ def cad_name():
             cad_cep()
         else:
             print("INVALID NAME!")
-
-    cad_name()
-
+            cad_name()
 
 def cad_cep():
     validation_cep = input("TYPE A CEP: ")
@@ -64,7 +62,7 @@ def cad_address():
         address = validation_address
     else:
         print("INVALID ADDRESS")
-        cad_address
+        cad_address()
 
     cad_sex()
 
