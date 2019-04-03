@@ -5,20 +5,20 @@ import re
 def menu():
     opt = ""
     while opt != "3":
-        opt = input('\n [1] - CAD: ' +
+        opt = int(input('\n [1] - CAD: ' +
                     '\n [2] - LOG: ' +
-                    '\n [3] - EXIT: \n \n ')
+                    '\n [3] - EXIT: \n \n '))
 
-        if opt == "1":
+        if opt == 1:
             cad()
 
-        elif opt == "2":
+        elif opt == 2:
             logar()
 
-        elif opt == "3":
+        elif opt == 3:
             print("\n END PROGRAM!")
 
-        elif opt == "4":
+        elif opt == 4:
             cad_password()
             
         else:
@@ -113,9 +113,7 @@ def cad_login():
     cad_password()
 
 
-def cad_password():  ##defeito aqui
-    ##(Falta obrigar uma letra maiuscula e uma mínima e aumentar o tamanho mínimo para 10)
-
+def cad_password():  
     password = input("ENTER A VALID PASSWORD: ")
     while len(password) < 10 or len(password) > 16:
         print(
