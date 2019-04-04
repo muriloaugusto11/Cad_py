@@ -13,9 +13,7 @@ def menu():
             cad()
 
         elif opt == 2:
-            #logar()
-            print("Em manutenção!")
-            menu()
+            logar()
 
         elif opt == 3:
             print("\n END PROGRAM!")
@@ -38,7 +36,6 @@ def cad_name():
     elif len(validation_name) > 6:
         if re.match('^[a-zA-Z ]+$', validation_name):
             name = validation_name
-            print(name)
             cad_cep()
         else:
             print("INVALID NAME!")
@@ -128,7 +125,7 @@ def cad_login():
 
 
 def cad_password():
-    print("Criação de senha")
+    print("Cadastro de Senha!")
     pw()
 
 
@@ -136,11 +133,10 @@ def pw():
     password = input("ENTER A VALID PASSWORD: ")
     c_password = input("ENTER A EQUAL AND VALID PASSWORD AGAIN TO CONFIRM: ")
     if password == c_password:
-        print("ok1")
         if len(password) > 10 or len(password) < 19:
-            print("ok2")
             if re.match('^[a-zA-Z0-9_ ]+$', password):
-                print("ok3")
+                print("Cadastro realizado com sucesso!")
+                menu()
             else:
                 print("YOU CAN'T USE SPECIAL CHARACTERES!")
                 pw()
@@ -153,10 +149,9 @@ def pw():
 
     menu()
 
-#def logar():
-#    print("\n Login")
-    # login = cad()
-    # password = cad()
+def logar():
+    print("\n Login:")
+
 #    l_login = input("ENTER A LOGIN: ")
 #    p_password = getpass.getpass("ENTER A PASSWORD: ")
 #    while l_login != login and p_password != password:
