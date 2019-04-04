@@ -152,15 +152,12 @@ def pw():
 def logar():
     print("\n Login:")
 
-#    l_login = input("ENTER A LOGIN: ")
-#    p_password = getpass.getpass("ENTER A PASSWORD: ")
-#    while l_login != login and p_password != password:
-#        print("INVALID LOGIN OR PASSWORD!")
-#        l_login = input("ENTER A VALID LOGIN: ")
-#        p_password = getpass.getpass("ENTER A VALID PASSWORD: ")
-#    if l_login == login and p_password == password:
-#        print()
-#    else:
-#        print()
+    l_login = input("ENTER A VALID LOGIN: ")
+    p_password = getpass.getpass("ENTER A VALID PASSWORD: ")
+    if l_login != login and p_password != password:
+        print("INVALID LOGIN OR PASSWORD!")
+        logar()
+    if l_login == login and p_password == password:
+        print("Logado!")
 
 menu()
