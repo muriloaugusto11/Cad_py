@@ -1,4 +1,3 @@
-import sqlite
 import getpass
 import re
 
@@ -7,8 +6,8 @@ def menu():
     opt = ""
     while opt != 3:
         opt = int(input('\n [1] - CAD: ' +
-                    '\n [2] - LOG: ' +
-                    '\n [3] - EXIT: \n \n '))
+                        '\n [2] - LOG: ' +
+                        '\n [3] - EXIT: \n \n '))
 
         if opt == 1:
             cad()
@@ -21,7 +20,7 @@ def menu():
 
         elif opt == 4:
             cad_password()
-            
+
         else:
             print("INVALID OPTION!")
 
@@ -46,26 +45,33 @@ def cad_name():
             print("INVALID NAME!")
             cad_name()
 
+
 def cad_cep():
     validation_cep = input("TYPE A CEP: ")
-    if re.match('^[0-9]+$', validation_cep):
-        cep = validation_cep
-    else:
-        print("INVALID CEP!")
-        cad_cep()
 
-    cad_address()
+    if len(validation_cep) < 8:
+        print("CEP FIELD MUST BE 8 CHARACTERS AND YOU PROVIDED: ", len(validation_cep))
+        cad_cep()
+    elif len(validation_cep) > 8:
+        print("CEP FIELD MUST BE 8 CHARACTERS AND YOU PROVIDED: ", len(validation_cep))
+        cad_cep()
+    elif len(validation_cep) == 8:
+        if re.match('^[0-9]+$', validation_cep):
+            cef = validation_cep
+            cad_address()
+        else:
+            print("INVALID FORMAT")
+            cad_cep()
 
 
 def cad_address():
     validation_address = input("TYPE AN ADDRESS: ")
-    if re.match('^[a-zA-Z ]+$', validation_address):
+    if re.match('^[a-zA-Z0-9 ]+$', validation_address):
         address = validation_address
+        cad_sex()
     else:
         print("INVALID ADDRESS")
         cad_address()
-
-    cad_sex()
 
 
 def cad_sex():
@@ -73,7 +79,6 @@ def cad_sex():
     while sex != "F" and sex != "M" and sex != "FEMALE" and sex != "MALE":
         print("INVALID SEX!")
         sex = input("ENTER THE SEX (FEMALE(F)/MALE(M): ")
-        print(sex)
 
     cad_cpf()
 
@@ -89,7 +94,10 @@ def cad_cpf():
     elif len(validation_cpf) == 11:
         if re.match('^[0-9]+$', validation_cpf):
             cpf = validation_cpf
-    cad_cel()
+            cad_cel()
+        else:
+            print("INVALID FORMAT")
+            cad_cpf()
 
 
 def cad_cel():
@@ -100,39 +108,49 @@ def cad_cel():
     elif len(validation_cel) == 11:
         if re.match('^[0-9]+$', validation_cel):
             cel = validation_cel
-    cad_login()
+            cad_login()
+        else:
+            print("INVALID PHONE NUMBER, YOU CANT USE SPECIAL CHARACTERS!")
+            cad_cel()
 
 
 def cad_login():
     validation_login = input("ENTER A VALID LOGIN: ")
     if len(validation_login) < 3 or len(validation_login) > 16:
-        print("INVALID LOGIN, LOGIN MUST BR IN 3 CHARACTERS AND A MAXIMUM OF 16 CHARACTERS AND YOU HAVE PROVIDED: ",
-              len(validation_login))
+        print("INVALID LOGIN, LOGIN MUST BR IN 3 CHARACTERS AND A MAXIMUM OF 16 CHARACTERS AND YOU HAVE PROVIDED: ", len(validation_login))
+        cad_login()
     elif len(validation_login) > 3 and len(validation_login) < 17:
-        if re.match('^[a-zA-Z_ ]+$', validation_login):
+        if re.match('^[a-zA-Z0-9_ ]+$', validation_login):
             login = validation_login
-    cad_password()
-
-
-def cad_password():  
-    password = input("ENTER A VALID PASSWORD: ")
-    while len(password) < 10 or len(password) > 16:
-        print(
-            "INVALID PASSWORD, THE PASSWORD MUST BE AT LEAST 10 CHARACTERS AND A MAXIMUM OF 16 CHARACTERS AND YOU HAVE PROVIDED: ",
-            len(password))
-        password = input("ENTER A VALID PASSWORD: ")
-
-    c_password = input("ENTER A VALID PASSWORD AGAIN TO CONFIRM: ")
-    while password != c_password:
-        print("PASSWORDS DO NOT MATCH! ENTER A PASSWORD AGAIN: ")
-        password = input("PASSWORD: ")
-        c_password = input("PASSWORD CONFIRMATION: ")
-        if password == c_password:
-            print()
-        if re.match('^[a-zA-Z_ ]+$', password) and re.match('^[a-zA-Z_ ]+$', c_password):
-            print()
+            cad_password()
         else:
-            print()
+            print("INVALID LOGIN, YOU CAN'T USE SPECIAL CHARACTERS!")
+            cad_login()
+
+
+def cad_password():
+    print("Criação de senha")
+    pw()
+
+
+def pw():
+    password = input("ENTER A VALID PASSWORD: ")
+    c_password = input("ENTER A EQUAL AND VALID PASSWORD AGAIN TO CONFIRM: ")
+    if password == c_password:
+        print("ok1")
+        if len(password) > 10 or len(password) < 19:
+            print("ok2")
+            if re.match('^[a-zA-Z0-9_ ]+$', password):
+                print("ok3")
+            else:
+                print("YOU CAN'T USE SPECIAL CHARACTERES!")
+                pw()
+        else:
+            print("tamanho invalido")
+            pw()
+    else:
+        print("diferente")
+        pw()
 
     menu()
 
