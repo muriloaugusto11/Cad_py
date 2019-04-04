@@ -4,7 +4,7 @@ import re
 
 def menu():
     opt = ""
-    while opt != "3":
+    while opt != 3:
         opt = int(input('\n [1] - CAD: ' +
                     '\n [2] - LOG: ' +
                     '\n [3] - EXIT: \n \n '))
