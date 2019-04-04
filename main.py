@@ -1,3 +1,4 @@
+import sqlite
 import getpass
 import re
 
