@@ -13,13 +13,12 @@ def menu():
             cad()
 
         elif opt == 2:
-            logar()
+            #logar()
+            print("Em manutenção!")
+            menu()
 
         elif opt == 3:
             print("\n END PROGRAM!")
-
-        elif opt == 4:
-            cad_password()
 
         else:
             print("INVALID OPTION!")
@@ -154,21 +153,19 @@ def pw():
 
     menu()
 
-
-def logar():
-    print("\n Login")
+#def logar():
+#    print("\n Login")
     # login = cad()
     # password = cad()
-    l_login = input("ENTER A LOGIN: ")
-    p_password = getpass.getpass("ENTER A PASSWORD: ")
-    while l_login != login and p_password != password:
-        print("INVALID LOGIN OR PASSWORD!")
-        l_login = input("ENTER A VALID LOGIN: ")
-        p_password = getpass.getpass("ENTER A VALID PASSWORD: ")
-    if l_login == login and p_password == password:
-        print()
-    else:
-        print()
-
+#    l_login = input("ENTER A LOGIN: ")
+#    p_password = getpass.getpass("ENTER A PASSWORD: ")
+#    while l_login != login and p_password != password:
+#        print("INVALID LOGIN OR PASSWORD!")
+#        l_login = input("ENTER A VALID LOGIN: ")
+#        p_password = getpass.getpass("ENTER A VALID PASSWORD: ")
+#    if l_login == login and p_password == password:
+#        print()
+#    else:
+#        print()
 
 menu()
