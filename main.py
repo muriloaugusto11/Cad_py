@@ -4,128 +4,160 @@ import re
 
 def menu():
     opt = ""
-    while opt != 3:
         
-        opt = int(input('\n [1] - CAD: ' +
-                        '\n [2] - LOG: ' +
-                        '\n [3] - EXIT: \n \n '))
+    opt = int(input('\n MENU: ' +
+                    '\n [1] - REGISTER: ' +
+                    '\n [2] - LOG: ' +
+                    '\n [3] - EXIT: \n \n '))
 
-        if opt == 1:
-            cad()
+    if opt == 1:
+        opt1 = int(input('\n REGISTRAR: ' + 
+                         '\n [1] - Gerente: ' +
+                         '\n [2] - Funcionário: ' +
+                         '\n [3] - Cliente: ' +
+                         '\n [4] - Voltar: \n \n'))
+        if opt1 == 1:
+          print("Gerente Aqui")
 
-        elif opt == 2:
-            logar()
+        elif opt1 == 2:
+          print("Funcionário Aqui")
 
-        elif opt == 3:
-            print("\n END PROGRAM!")
+        elif opt1 == 3:
+          print("cliente")
+
+        elif opt1 == 4:
+          menu()
 
         else:
-            print("INVALID OPTION!")
+          print("invalid")
+
+    elif opt == 2:
+        opt2 = int(input('\n LOGAR: ' +
+                         '\n [1] - Gerente: ' +
+                         '\n [2] - Funcionário: ' +
+                         '\n [3] - Voltar: \n \n'))
+        if opt2 == 1:
+            print("Gerente")
+
+        if opt2 == 2:
+            print("Funcionário")
+
+        if opt2 == 3:
+            menu()
+
+    elif opt == 3:
+        print("\n END PROGRAM!")
+
+    else:
+        print("\n INVALID OPTION!")
 
 
-def cad():
+def register():
     print("\n REGISTER:")
-    cad_name()
+    register_name()
 
 
-def cad_name():
+def register_name():
     validation_name = input("TYPE A NAME: ")
     if len(validation_name) < 6:
         print("INVALID NAME, THE MINIMUM LENGTH OF A NAME SHOULD BE 6 AND YOU ENTERED:", len(validation_name))
-        cad_name()
+        register_name()
+        
 
     elif len(validation_name) > 6:
         if re.match('^[a-zA-Z ]+$', validation_name):
             name = validation_name
-            cad_cep()
+            register_cep()
+            
+
         else:
             print("INVALID NAME!")
-            cad_name()
+            register_name()
 
 
-def cad_cep():
+def register_cep():
     validation_cep = input("TYPE A CEP: ")
 
     if len(validation_cep) < 8:
         print("CEP FIELD MUST BE 8 CHARACTERS AND YOU PROVIDED: ", len(validation_cep))
-        cad_cep()
+        register_cep()
     elif len(validation_cep) > 8:
         print("CEP FIELD MUST BE 8 CHARACTERS AND YOU PROVIDED: ", len(validation_cep))
-        cad_cep()
+        register_cep()
     elif len(validation_cep) == 8:
         if re.match('^[0-9]+$', validation_cep):
-            cef = validation_cep
-            cad_address()
+            cep = validation_cep
+            register_address()
         else:
             print("INVALID FORMAT")
-            cad_cep()
+            register_cep()
 
 
-def cad_address():
+def register_address():
     validation_address = input("TYPE AN ADDRESS: ")
     if re.match('^[a-zA-Z0-9 ]+$', validation_address):
         address = validation_address
-        cad_sex()
+        register_sex()
     else:
         print("INVALID ADDRESS")
-        cad_address()
+        register_address()
 
 
-def cad_sex():
+def register_sex():
     sex = input("ENTER A SEX (FEMALE(F)/MALE(M)): ").upper()
     while sex != "F" and sex != "M" and sex != "FEMALE" and sex != "MALE":
         print("INVALID SEX!")
         sex = input("ENTER THE SEX (FEMALE(F)/MALE(M): ")
 
-    cad_cpf()
+    register_cpf()
 
 
-def cad_cpf():
+def register_cpf():
     validation_cpf = input("ENTER A VALID CPF: ")
     if len(validation_cpf) < 11:
         print("CPF FIELD MUST BE 11 CHARACTERS AND YOU PROVIDED: ", len(validation_cpf))
-        cad_cpf()
+        register_cpf()
     elif len(validation_cpf) > 11:
         print("CPF FIELD MUST BE 11 CHARACTERS AND YOU PROVIDED: ", len(validation_cpf))
-        cad_cpf()
+        register_cpf()
     elif len(validation_cpf) == 11:
         if re.match('^[0-9]+$', validation_cpf):
             cpf = validation_cpf
-            cad_cel()
+            register_cel()
         else:
             print("INVALID FORMAT")
-            cad_cpf()
+            register_cpf()
 
 
-def cad_cel():
+def register_cel():
     validation_cel = input("ENTER A VALID MOBILE NUMBER: ")
     if len(validation_cel) != 11:
         print("INVALID SIZE, YOU PROVIDE", len(validation_cel), "WHEN IN FACT IT SHOULD BE 11")
-        cad_cel()
+        register_cel()
     elif len(validation_cel) == 11:
         if re.match('^[0-9]+$', validation_cel):
             cel = validation_cel
-            cad_login()
+            register_login()
         else:
             print("INVALID PHONE NUMBER, YOU CANT USE SPECIAL CHARACTERS!")
-            cad_cel()
+            register_cel()
 
 
-def cad_login():
+def register_login():
     validation_login = input("ENTER A VALID LOGIN: ")
     if len(validation_login) < 3 or len(validation_login) > 16:
         print("INVALID LOGIN, LOGIN MUST BR IN 3 CHARACTERS AND A MAXIMUM OF 16 CHARACTERS AND YOU HAVE PROVIDED: ", len(validation_login))
-        cad_login()
+        register_login()
     elif len(validation_login) > 3 and len(validation_login) < 17:
         if re.match('^[a-zA-Z0-9_ ]+$', validation_login):
             login = validation_login
-            cad_password()
+            register_password()
         else:
             print("INVALID LOGIN, YOU CAN'T USE SPECIAL CHARACTERS!")
-            cad_login()
+            register_login()
 
 
-def cad_password():
+def register_password():
     print("Cadastro de Senha!")
     pw()
 
