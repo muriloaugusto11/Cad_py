@@ -50,10 +50,10 @@ def menu_log():
                      '\n [3] - BACK TO REGISTER MENU: \n \n'))
 
     if opt2 == 1:
-        print("log Gerente")
+        print("MANAGER LOG")
 
     if opt2 == 2:
-        print("log Funcionário")
+        print("EMPLOYEE LOG")
 
     if opt2 == 3:
         menu_register()
