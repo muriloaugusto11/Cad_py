@@ -39,7 +39,8 @@ def menu_register():
         menu()
 
     else:
-        print("invalid")
+        print("INVALID OPTION!")
+        menu_register()
 
 
 def menu_log():
