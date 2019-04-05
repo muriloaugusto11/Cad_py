@@ -11,45 +11,53 @@ def menu():
                     '\n [3] - EXIT: \n \n '))
 
     if opt == 1:
-        opt1 = int(input('\n REGISTRAR: ' + 
-                         '\n [1] - Gerente: ' +
-                         '\n [2] - Funcionário: ' +
-                         '\n [3] - Cliente: ' +
-                         '\n [4] - Voltar: \n \n'))
-        if opt1 == 1:
-          print("Gerente Aqui")
-
-        elif opt1 == 2:
-          print("Funcionário Aqui")
-
-        elif opt1 == 3:
-          print("cliente")
-
-        elif opt1 == 4:
-          menu()
-
-        else:
-          print("invalid")
-
+        menu_register()
+        
     elif opt == 2:
-        opt2 = int(input('\n LOGAR: ' +
-                         '\n [1] - Gerente: ' +
-                         '\n [2] - Funcionário: ' +
-                         '\n [3] - Voltar: \n \n'))
-        if opt2 == 1:
-            print("Gerente")
-
-        if opt2 == 2:
-            print("Funcionário")
-
-        if opt2 == 3:
-            menu()
+        menu_log()
 
     elif opt == 3:
-        print("\n END PROGRAM!")
+        print("EXIT")
+
+def menu_register():
+    opt1 = int(input('\n REGISTRAR: ' + 
+                     '\n [1] - Gerente: '                        '\n [2] - Funcionário: ' +
+                     '\n [3] - Cliente: ' +
+                     '\n [4] - Voltar ao menu principal: \n \n'))
+    if opt1 == 1:
+        register()
+
+    elif opt1 == 2:
+        register()
+
+    elif opt1 == 3:
+        register()
+
+    elif opt1 == 4:
+        menu()
+
+    else:
+        print("invalid")
+
+
+def menu_log():
+    opt2 = int(input('\n LOGAR: ' +
+                     '\n [1] - Gerente: ' +
+                     '\n [2] - Funcionário: ' +
+                     '\n [3] - Voltar: \n \n'))
+
+    if opt2 == 1:
+        print("log Gerente")
+
+    if opt2 == 2:
+        print("log Funcionário")
+
+    if opt2 == 3:
+        menu()
 
     else:
         print("\n INVALID OPTION!")
+        menu_log()
 
 
 def register():
