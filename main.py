@@ -47,7 +47,7 @@ def menu_log():
     opt2 = int(input('\n LOGAR: ' +
                      '\n \n [1] - MANAGER: ' +
                      '\n [2] - EMPLOYEE: ' +
-                     '\n [3] - BACK TO REGISTER MENU: \n \n'))
+                     '\n [3] - BACK TO MAIN MENU: \n \n'))
 
     if opt2 == 1:
         print("MANAGER LOG")
@@ -56,7 +56,7 @@ def menu_log():
         print("EMPLOYEE LOG")
 
     if opt2 == 3:
-        menu_register()
+        menu()
 
     else:
         print("\n INVALID OPTION!")
