@@ -22,10 +22,10 @@ def menu():
 
 def menu_register():
     opt1 = int(input('\n REGISTRAR: ' + 
-                     '\n \n [1] - Gerente: ' +                       
-                     '\n [2] - Funcionário: ' +
-                     '\n [3] - Cliente: ' +
-                     '\n [4] - Voltar ao menu principal: \n \n'))
+                     '\n \n [1] - MANAGER: ' +                       
+                     '\n [2] - EMPLOYEE: ' +
+                     '\n [3] - CLIENT: ' +
+                     '\n [4] - BACK TO MAIN MENU: \n \n'))
     if opt1 == 1:
         register()
 
@@ -44,9 +44,9 @@ def menu_register():
 
 def menu_log():
     opt2 = int(input('\n LOGAR: ' +
-                     '\n \n [1] - Gerente: ' +
-                     '\n [2] - Funcionário: ' +
-                     '\n [3] - Voltar: \n \n'))
+                     '\n \n [1] - MANAGER: ' +
+                     '\n [2] - EMPLOYEE: ' +
+                     '\n [3] - BACK TO REGISTER MENU: \n \n'))
 
     if opt2 == 1:
         print("log Gerente")
@@ -55,7 +55,7 @@ def menu_log():
         print("log Funcionário")
 
     if opt2 == 3:
-        menu()
+        menu_register()
 
     else:
         print("\n INVALID OPTION!")
