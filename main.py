@@ -3,10 +3,11 @@ import re
 
 
 def menu():
+    print("\n Seja Bem Vindo!")
     opt = ""
         
     opt = int(input('\n MENU: ' +
-                    '\n [1] - REGISTER: ' +
+                    '\n\n [1] - REGISTER: ' +
                     '\n [2] - LOG: ' +
                     '\n [3] - EXIT: \n \n '))
 
@@ -21,7 +22,7 @@ def menu():
 
 def menu_register():
     opt1 = int(input('\n REGISTRAR: ' + 
-                     '\n [1] - Gerente: ' +                       
+                     '\n \n [1] - Gerente: ' +                       
                      '\n [2] - Funcionário: ' +
                      '\n [3] - Cliente: ' +
                      '\n [4] - Voltar ao menu principal: \n \n'))
@@ -43,7 +44,7 @@ def menu_register():
 
 def menu_log():
     opt2 = int(input('\n LOGAR: ' +
-                     '\n [1] - Gerente: ' +
+                     '\n \n [1] - Gerente: ' +
                      '\n [2] - Funcionário: ' +
                      '\n [3] - Voltar: \n \n'))
 
