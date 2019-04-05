@@ -56,7 +56,7 @@ def menu_log():
         print("EMPLOYEE LOG")
 
     if opt2 == 3:
-        menu()
+        menu_register()
 
     else:
         print("\n INVALID OPTION!")
