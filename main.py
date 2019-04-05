@@ -5,6 +5,8 @@ import re
 def menu():
     opt = ""
     while opt != 3:
+        print("🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+")
         opt = int(input('\n [1] - CAD: ' +
                         '\n [2] - LOG: ' +
                         '\n [3] - EXIT: \n \n '))
@@ -135,16 +137,16 @@ def pw():
     if password == c_password:
         if len(password) > 10 or len(password) < 19:
             if re.match('^[a-zA-Z0-9_ ]+$', password):
-                print("Cadastro realizado com sucesso!")
+                print("SUCESSEFULL REGISTRATION!")
                 menu()
             else:
                 print("YOU CAN'T USE SPECIAL CHARACTERES!")
                 pw()
         else:
-            print("tamanho invalido")
+            print("INVALID SIZE")
             pw()
     else:
-        print("diferente")
+        print("THE PASSWORDS NOT MATCH")
         pw()
 
     menu()
