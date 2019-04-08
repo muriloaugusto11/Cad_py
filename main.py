@@ -2,10 +2,32 @@ import getpass
 import re
 
 
+class Cadastrar:
+
+    def __init__(self, name, cep, cel, address, login, password, sex, l_login, p_password, validation_name, validation_cep,
+            validation_cpf, validation_cel, validation_address, validation_login):
+        self.name = name
+        self.cep = cep
+        self.cel = cel
+        self.address = address
+        self.login = login
+        self.password = password
+        self.sex = sex
+        self.l_login = l_login
+        self.p_password = p_password
+        self.validation_name = validation_name
+        self.validation_cep = validation_cep
+        self.validation_cpf = validation_cpf
+        self.validation_cel = validation_cel
+        self.validation_address = validation_address
+        self.validation_login = validation_login
+
+
 def menu():
+
     print("\n Seja Bem Vindo!")
     opt = ""
-        
+
     opt = int(input('\n MENU: ' +
                     '\n\n [1] - REGISTER: ' +
                     '\n [2] - LOG: ' +
@@ -13,16 +35,17 @@ def menu():
 
     if opt == 1:
         menu_register()
-        
+
     elif opt == 2:
         menu_log()
 
     elif opt == 3:
         print("EXIT")
 
+
 def menu_register():
-    opt1 = int(input('\n REGISTRAR: ' + 
-                     '\n \n [1] - MANAGER: ' +                       
+    opt1 = int(input('\n REGISTRAR: ' +
+                     '\n \n [1] - MANAGER: ' +
                      '\n [2] - EMPLOYEE: ' +
                      '\n [3] - CLIENT: ' +
                      '\n [4] - BACK TO MAIN MENU: \n \n'))
@@ -36,7 +59,7 @@ def menu_register():
         register()
 
     elif opt1 == 4:
-        menu()
+        register_login()
 
     else:
         print("INVALID OPTION!")
@@ -73,13 +96,11 @@ def register_name():
     if len(validation_name) < 6:
         print("INVALID NAME, THE MINIMUM LENGTH OF A NAME SHOULD BE 6 AND YOU ENTERED:", len(validation_name))
         register_name()
-        
 
     elif len(validation_name) > 6:
         if re.match('^[a-zA-Z ]+$', validation_name):
             name = validation_name
             register_cep()
-            
 
         else:
             print("INVALID NAME!")
@@ -157,45 +178,41 @@ def register_cel():
 def register_login():
     validation_login = input("ENTER A VALID LOGIN: ")
     if len(validation_login) < 3 or len(validation_login) > 16:
-        print("INVALID LOGIN, LOGIN MUST BR IN 3 CHARACTERS AND A MAXIMUM OF 16 CHARACTERS AND YOU HAVE PROVIDED: ", len(validation_login))
+        print("INVALID LOGIN, LOGIN MUST BR IN 3 CHARACTERS AND A MAXIMUM OF 16 CHARACTERS AND YOU HAVE PROVIDED: ",
+              len(validation_login))
         register_login()
     elif len(validation_login) > 3 and len(validation_login) < 17:
         if re.match('^[a-zA-Z0-9_ ]+$', validation_login):
             login = validation_login
-            register_password()
+            register_password(login)
         else:
             print("INVALID LOGIN, YOU CAN'T USE SPECIAL CHARACTERS!")
             register_login()
 
 
-def register_password():
+def register_password(login):
     print("Cadastro de Senha!")
-    pw()
-
-
-def pw():
     password = input("ENTER A VALID PASSWORD: ")
     c_password = input("ENTER A EQUAL AND VALID PASSWORD AGAIN TO CONFIRM: ")
     if password == c_password:
         if len(password) > 10 or len(password) < 19:
             if re.match('^[a-zA-Z0-9_ ]+$', password):
                 print("SUCESSEFULL REGISTRATION!")
-                menu()
+                logar(login, password)  # salvar no banco de dados
+
             else:
                 print("YOU CAN'T USE SPECIAL CHARACTERES!")
-                pw()
+                register_password()
         else:
             print("INVALID SIZE")
-            pw()
+            register_password()
     else:
         print("THE PASSWORDS NOT MATCH")
-        pw()
+        register_password()
 
-    menu()
 
-def logar():
+def logar(login, password):
     print("\n Login:")
-
     l_login = input("ENTER A VALID LOGIN: ")
     p_password = getpass.getpass("ENTER A VALID PASSWORD: ")
     if l_login != login and p_password != password:
@@ -203,5 +220,7 @@ def logar():
         logar()
     if l_login == login and p_password == password:
         print("Logado!")
+        menu()
+
 
 menu()
