@@ -2,24 +2,26 @@ import getpass
 import re
 
 
-def menu():
+class Cadastrar:
 
-    print("\n Seja Bem Vindo!")
-    opt = ""
+    def menu(self):
 
-    opt = int(input('\n MENU: ' +
-                    '\n\n [1] - REGISTER: ' +
-                    '\n [2] - LOG: ' +
-                    '\n [3] - EXIT: \n \n '))
+        print("\n Seja Bem Vindo!")
+        opt = ""
+    
+        opt = int(input('\n MENU: ' +
+                        '\n\n [1] - REGISTER: ' +
+                        '\n [2] - LOG: ' +
+                        '\n [3] - EXIT: \n \n '))
 
-    if opt == 1:
-        menu_register()
+        if opt == 1:
+            menu_register()
 
-    elif opt == 2:
-        menu_log()
+        elif opt == 2:
+            menu_log()
 
-    elif opt == 3:
-        print("EXIT")
+        elif opt == 3:
+            print("EXIT")
 
 
 def menu_register():
