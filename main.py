@@ -2,26 +2,27 @@ import getpass
 import re
 
 
-class Cadastrar:
+def menu():
 
-    def menu(self):
+    print("\n Seja Bem Vindo!")
+    opt = ""
 
-        print("\n Seja Bem Vindo!")
-        opt = ""
-    
-        opt = int(input('\n MENU: ' +
-                        '\n\n [1] - REGISTER: ' +
-                        '\n [2] - LOG: ' +
-                        '\n [3] - EXIT: \n \n '))
+    opt = int(input('\n MENU: ' +
+                    '\n\n [1] - REGISTER: ' +
+                    '\n [2] - LOG: ' +
+                    '\n [3] - EXIT: \n \n '))
 
-        if opt == 1:
-            menu_register()
+    if opt == 1:
+        menu_register()
 
-        elif opt == 2:
-            menu_log()
+    elif opt == 2:
+        menu_log()
 
-        elif opt == 3:
-            print("EXIT")
+    elif opt == 3:
+        print("EXIT")
+
+    elif opt == 4:
+        register_login()
 
 
 def menu_register():
@@ -54,10 +55,10 @@ def menu_log():
                      '\n [3] - BACK TO MAIN MENU: \n \n'))
 
     if opt2 == 1:
-        print("MANAGER LOG")
+        menu_register()
 
     if opt2 == 2:
-        print("EMPLOYEE LOG")
+        menu_register()
 
     if opt2 == 3:
         menu_register()
@@ -165,13 +166,13 @@ def register_login():
     elif len(validation_login) > 3 and len(validation_login) < 17:
         if re.match('^[a-zA-Z0-9_ ]+$', validation_login):
             login = validation_login
-            register_password()
+            register_password(login)
         else:
             print("INVALID LOGIN, YOU CAN'T USE SPECIAL CHARACTERS!")
             register_login()
 
 
-def register_password():
+def register_password(login):
     print("\n Cadastro de Senha!")
     password = input("ENTER A VALID PASSWORD: ")
     c_password = input("ENTER A EQUAL AND VALID PASSWORD AGAIN TO CONFIRM: ")
@@ -179,7 +180,7 @@ def register_password():
         if len(password) > 10 or len(password) < 19:
             if re.match('^[a-zA-Z0-9_ ]+$', password):
                 print("SUCESSEFULL REGISTRATION!")
-                logar()  # salvar no banco de dados
+                logar(login, password)  # salvar no banco de dados
 
             else:
                 print("YOU CAN'T USE SPECIAL CHARACTERES!")
@@ -189,10 +190,10 @@ def register_password():
             register_password()
     else:
         print("THE PASSWORDS NOT MATCH")
-        register_password()
+        register_password(login)
 
 
-def logar():
+def logar(login, password):
     print("\n Login:")
     l_login = input("\n ENTER A VALID LOGIN: ")
     p_password = getpass.getpass("\n ENTER A VALID PASSWORD: ")
