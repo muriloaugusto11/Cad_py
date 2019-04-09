@@ -158,6 +158,7 @@ def register_cel():
 
 
 def register_login():
+    print("\n LOGIN REGISTER!")
     validation_login = input("ENTER A VALID LOGIN: ")
     if len(validation_login) < 3 or len(validation_login) > 16:
         print("INVALID LOGIN, LOGIN MUST BR IN 3 CHARACTERS AND A MAXIMUM OF 16 CHARACTERS AND YOU HAVE PROVIDED: ",
@@ -166,21 +167,21 @@ def register_login():
     elif len(validation_login) > 3 and len(validation_login) < 17:
         if re.match('^[a-zA-Z0-9_ ]+$', validation_login):
             login = validation_login
-            register_password(login)
+            register_password()
         else:
             print("INVALID LOGIN, YOU CAN'T USE SPECIAL CHARACTERS!")
             register_login()
 
 
-def register_password(login):
-    print("\n Cadastro de Senha!")
+def register_password():
+    print("\n PASSWORD REGISTER!")
     password = input("ENTER A VALID PASSWORD: ")
     c_password = input("ENTER A EQUAL AND VALID PASSWORD AGAIN TO CONFIRM: ")
     if password == c_password:
         if len(password) > 10 or len(password) < 19:
             if re.match('^[a-zA-Z0-9_ ]+$', password):
                 print("SUCESSEFULL REGISTRATION!")
-                logar(login, password)  # salvar no banco de dados
+                logar()
 
             else:
                 print("YOU CAN'T USE SPECIAL CHARACTERES!")
@@ -190,11 +191,11 @@ def register_password(login):
             register_password()
     else:
         print("THE PASSWORDS NOT MATCH")
-        register_password(login)
+        register_password()
 
 
-def logar(login, password):
-    print("\n Login:")
+def logar():
+    print("\n LOGIN:")
     l_login = input("\n ENTER A VALID LOGIN: ")
     p_password = getpass.getpass("\n ENTER A VALID PASSWORD: ")
     if l_login != login and p_password != password:
