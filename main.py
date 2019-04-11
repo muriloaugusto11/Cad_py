@@ -4,8 +4,7 @@ import re
 
 def menu():
 
-    print("\n Seja Bem Vindo!")
-    opt = ""
+    print("\n Welcome!")
 
     opt = int(input('\n MENU: ' +
                     '\n\n [1] - REGISTER: ' +
@@ -19,11 +18,11 @@ def menu():
         menu_log()
 
     elif opt == 3:
-        print("EXIT")
+        print("End Program")
 
 
 def menu_register():
-    opt1 = int(input('\n REGISTRAR: ' +
+    opt1 = int(input('\n REGISTER: ' +
                      '\n \n [1] - MANAGER: ' +
                      '\n [2] - EMPLOYEE: ' +
                      '\n [3] - CLIENT: ' +
@@ -46,7 +45,7 @@ def menu_register():
 
 
 def menu_log():
-    opt2 = int(input('\n LOGAR: ' +
+    opt2 = int(input('\n LOGIN: ' +
                      '\n \n [1] - MANAGER: ' +
                      '\n [2] - EMPLOYEE: ' +
                      '\n [3] - BACK TO MAIN MENU: \n \n'))
@@ -115,8 +114,8 @@ def register_address():
 
 
 def register_sex():
-    sex = input("ENTER A SEX (FEMALE(F)/MALE(M)): ").upper()
-    while sex != "F" and sex != "M" and sex != "FEMALE" and sex != "MALE":
+    sex = input("ENTER A SEX (FEMALE(F)/MALE(M)/OTHER(O)): ").upper()
+    while sex != "F" and sex != "M" and sex != "FEMALE" and sex != "MALE" and sex != "O":
         print("INVALID SEX!")
         sex = input("ENTER THE SEX (FEMALE(F)/MALE(M): ")
 
@@ -124,11 +123,8 @@ def register_sex():
 
 
 def register_cpf():
-    validation_cpf = input("ENTER A VALID CPF: ")
-    if len(validation_cpf) < 11:
-        print("CPF FIELD MUST BE 11 CHARACTERS AND YOU PROVIDED: ", len(validation_cpf))
-        register_cpf()
-    elif len(validation_cpf) > 11:
+    validation_cpf = int(input("ENTER A VALID CPF: "))
+    if len(validation_cpf) != 11:
         print("CPF FIELD MUST BE 11 CHARACTERS AND YOU PROVIDED: ", len(validation_cpf))
         register_cpf()
     elif len(validation_cpf) == 11:
@@ -141,7 +137,7 @@ def register_cpf():
 
 
 def register_cel():
-    validation_cel = input("ENTER A VALID MOBILE NUMBER: ")
+    validation_cel = int(input("ENTER A VALID MOBILE NUMBER: "))
     if len(validation_cel) != 11:
         print("INVALID SIZE, YOU PROVIDE", len(validation_cel), "WHEN IN FACT IT SHOULD BE 11")
         register_cel()
