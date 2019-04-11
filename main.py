@@ -21,9 +21,6 @@ def menu():
     elif opt == 3:
         print("EXIT")
 
-    elif opt == 4:
-        register_login()
-
 
 def menu_register():
     opt1 = int(input('\n REGISTRAR: ' +
@@ -41,7 +38,7 @@ def menu_register():
         register()
 
     elif opt1 == 4:
-        register_login()
+        menu()
 
     else:
         print("INVALID OPTION!")
@@ -55,13 +52,13 @@ def menu_log():
                      '\n [3] - BACK TO MAIN MENU: \n \n'))
 
     if opt2 == 1:
-        menu_register()
+        logar()
 
     if opt2 == 2:
-        menu_register()
+        logar()
 
     if opt2 == 3:
-        menu_register()
+        menu()
 
     else:
         print("\n INVALID OPTION!")
