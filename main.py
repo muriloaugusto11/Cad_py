@@ -51,10 +51,10 @@ def menu_log():
                      '\n [3] - BACK TO MAIN MENU: \n \n'))
 
     if opt2 == 1:
-        logar()
+        log()
 
     elif opt2 == 2:
-        logar()
+        log()
 
     elif opt2 == 3:
         menu()
@@ -174,7 +174,7 @@ def register_password():
         if len(password) > 10 or len(password) < 19:
             if re.match('^[a-zA-Z0-9_ ]+$', password):
                 print("SUCESSEFULL REGISTRATION!")
-                logar()
+                log()
 
             else:
                 print("YOU CAN'T USE SPECIAL CHARACTERES!")
@@ -187,13 +187,13 @@ def register_password():
         register_password()
 
 
-def logar():
+def log():
     print("\n LOGIN:")
     l_login = input("\n ENTER A VALID LOGIN: ")
     p_password = getpass.getpass("\n ENTER A VALID PASSWORD: ")
     if l_login != login and p_password != password:
         print("\n INVALID LOGIN OR PASSWORD!")
-        logar()
+        log()
     elif l_login == login and p_password == password:
         print("\n Logado!")
         menu()
