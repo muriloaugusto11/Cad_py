@@ -54,10 +54,10 @@ def menu_log():
     if opt2 == 1:
         logar()
 
-    if opt2 == 2:
+    elif opt2 == 2:
         logar()
 
-    if opt2 == 3:
+    elif opt2 == 3:
         menu()
 
     else:
@@ -198,7 +198,7 @@ def logar():
     if l_login != login and p_password != password:
         print("\n INVALID LOGIN OR PASSWORD!")
         logar()
-    if l_login == login and p_password == password:
+    elif l_login == login and p_password == password:
         print("\n Logado!")
         menu()
 
