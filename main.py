@@ -123,7 +123,7 @@ def register_sex():
 
 
 def register_cpf():
-    validation_cpf = int(input("ENTER A VALID CPF: "))
+    validation_cpf = input("ENTER A VALID CPF: ")
     if len(validation_cpf) != 11:
         print("CPF FIELD MUST BE 11 CHARACTERS AND YOU PROVIDED: ", len(validation_cpf))
         register_cpf()
@@ -137,7 +137,7 @@ def register_cpf():
 
 
 def register_cel():
-    validation_cel = int(input("ENTER A VALID MOBILE NUMBER: "))
+    validation_cel = input("ENTER A VALID MOBILE NUMBER: ")
     if len(validation_cel) != 11:
         print("INVALID SIZE, YOU PROVIDE", len(validation_cel), "WHEN IN FACT IT SHOULD BE 11")
         register_cel()
@@ -164,17 +164,18 @@ def register_login():
         else:
             print("INVALID LOGIN, YOU CAN'T USE SPECIAL CHARACTERS!")
             register_login()
-
+            
 
 def register_password():
     print("\n PASSWORD REGISTER!")
-    password = input("ENTER A VALID PASSWORD: ")
+    validation_password = input("ENTER A VALID PASSWORD: ")
     c_password = input("ENTER A EQUAL AND VALID PASSWORD AGAIN TO CONFIRM: ")
-    if password == c_password:
-        if len(password) > 10 or len(password) < 19:
-            if re.match('^[a-zA-Z0-9_ ]+$', password):
+    if validation_password == c_password:
+        if len(validation_password) > 10 or len(validation_password) < 19:
+            if re.match('^[a-zA-Z0-9_ ]+$', validation_password):
+                password = validation_password
                 print("SUCESSEFULL REGISTRATION!")
-                log()
+                menu()
 
             else:
                 print("YOU CAN'T USE SPECIAL CHARACTERES!")
@@ -189,6 +190,8 @@ def register_password():
 
 def log():
     print("\n LOGIN:")
+    global login
+    global password
     l_login = input("\n ENTER A VALID LOGIN: ")
     p_password = getpass.getpass("\n ENTER A VALID PASSWORD: ")
     if l_login != login and p_password != password:
