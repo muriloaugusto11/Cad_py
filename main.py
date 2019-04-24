@@ -1,5 +1,16 @@
+import sqlite3
 import getpass
 import re
+
+connection = sqlite3.connect('cadastro.db')
+c = connection.cursor()
+
+
+def create_table():
+    c.execute('CREATE TABLE IF NOT EXISTS dados (id integer, name string)')
+
+
+create_table()
 
 
 def menu():
@@ -75,9 +86,13 @@ def register_name():
         print("INVALID NAME, THE MINIMUM LENGTH OF A NAME SHOULD BE 6 AND YOU ENTERED:", len(validation_name))
         register_name()
 
-    elif len(validation_name) > 6:
+    elif len(validation_name) >= 6:
         if re.match('^[a-zA-Z ]+$', validation_name):
             name = validation_name
+            c.execute('INSERT INTO dados VALUES(?, ?)',
+                      (1, name))
+
+            connection.commit()
             register_cep()
 
         else:
@@ -164,7 +179,7 @@ def register_login():
         else:
             print("INVALID LOGIN, YOU CAN'T USE SPECIAL CHARACTERS!")
             register_login()
-            
+
 
 def register_password():
     print("\n PASSWORD REGISTER!")
@@ -203,3 +218,13 @@ def log():
 
 
 menu()
+
+'''
+def dataentry():
+    c.execute('INSERT INTO dados VALUES(?, ?, ?)',
+              (1, a, b))
+
+    connection.commit()
+
+dataentry()
+'''
