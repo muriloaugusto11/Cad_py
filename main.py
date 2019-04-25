@@ -7,7 +7,8 @@ c = connection.cursor()
 
 
 def create_table():
-    c.execute('CREATE TABLE IF NOT EXISTS dados (id integer, name string)')
+    c.execute('CREATE TABLE IF NOT EXISTS dados (id integer, name string, cep string, address string, sex string, '
+              'cpf string, cel string, login string, password string)')
 
 
 create_table()
@@ -89,18 +90,14 @@ def register_name():
     elif len(validation_name) >= 6:
         if re.match('^[a-zA-Z ]+$', validation_name):
             name = validation_name
-            c.execute('INSERT INTO dados VALUES(?, ?)',
-                      (1, name))
-
-            connection.commit()
-            register_cep()
+            register_cep(name)
 
         else:
             print("INVALID NAME!")
             register_name()
 
 
-def register_cep():
+def register_cep(name):
     validation_cep = input("TYPE A CEP: ")
 
     if len(validation_cep) < 8:
@@ -112,32 +109,32 @@ def register_cep():
     elif len(validation_cep) == 8:
         if re.match('^[0-9]+$', validation_cep):
             cep = validation_cep
-            register_address()
+            register_address(name, cep)
         else:
             print("INVALID FORMAT")
             register_cep()
 
 
-def register_address():
+def register_address(name, cep):
     validation_address = input("TYPE AN ADDRESS: ")
     if re.match('^[a-zA-Z0-9 ]+$', validation_address):
         address = validation_address
-        register_sex()
+        register_sex(name, cep, address)
     else:
         print("INVALID ADDRESS")
         register_address()
 
 
-def register_sex():
+def register_sex(name, cep, address):
     sex = input("ENTER A SEX (FEMALE(F)/MALE(M)/OTHER(O)): ").upper()
     while sex != "F" and sex != "M" and sex != "FEMALE" and sex != "MALE" and sex != "O":
         print("INVALID SEX!")
         sex = input("ENTER THE SEX (FEMALE(F)/MALE(M): ")
 
-    register_cpf()
+    register_cpf(name, cep, address, sex)
 
 
-def register_cpf():
+def register_cpf(name, cep, address, sex):
     validation_cpf = input("ENTER A VALID CPF: ")
     if len(validation_cpf) != 11:
         print("CPF FIELD MUST BE 11 CHARACTERS AND YOU PROVIDED: ", len(validation_cpf))
@@ -145,13 +142,13 @@ def register_cpf():
     elif len(validation_cpf) == 11:
         if re.match('^[0-9]+$', validation_cpf):
             cpf = validation_cpf
-            register_cel()
+            register_cel(name, cep, address, sex, cpf)
         else:
             print("INVALID FORMAT")
             register_cpf()
 
 
-def register_cel():
+def register_cel(name, cep, address, sex, cpf):
     validation_cel = input("ENTER A VALID MOBILE NUMBER: ")
     if len(validation_cel) != 11:
         print("INVALID SIZE, YOU PROVIDE", len(validation_cel), "WHEN IN FACT IT SHOULD BE 11")
@@ -159,13 +156,13 @@ def register_cel():
     elif len(validation_cel) == 11:
         if re.match('^[0-9]+$', validation_cel):
             cel = validation_cel
-            register_login()
+            register_login(name, cep, address, sex, cpf, cel)
         else:
             print("INVALID PHONE NUMBER, YOU CANT USE SPECIAL CHARACTERS!")
             register_cel()
 
 
-def register_login():
+def register_login(name, cep, address, sex, cpf, cel):
     print("\n LOGIN REGISTER!")
     validation_login = input("ENTER A VALID LOGIN: ")
     if len(validation_login) < 3 or len(validation_login) > 16:
@@ -175,13 +172,13 @@ def register_login():
     elif len(validation_login) > 3 and len(validation_login) < 17:
         if re.match('^[a-zA-Z0-9_ ]+$', validation_login):
             login = validation_login
-            register_password()
+            register_password(name, cep, address, sex, cpf, cel, login)
         else:
             print("INVALID LOGIN, YOU CAN'T USE SPECIAL CHARACTERS!")
             register_login()
 
 
-def register_password():
+def register_password(name, cep, address, sex, cpf, cel, login):
     print("\n PASSWORD REGISTER!")
     validation_password = input("ENTER A VALID PASSWORD: ")
     c_password = input("ENTER A EQUAL AND VALID PASSWORD AGAIN TO CONFIRM: ")
@@ -189,7 +186,13 @@ def register_password():
         if len(validation_password) > 10 or len(validation_password) < 19:
             if re.match('^[a-zA-Z0-9_ ]+$', validation_password):
                 password = validation_password
-                print("SUCESSEFULL REGISTRATION!")
+                print("SUCCESSFUL REGISTRATION!")
+
+                c.execute('INSERT INTO dados VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                          (1, name, cep, address, sex, cpf, cel, login, password))
+
+                connection.commit()
+                print("passou")
                 menu()
 
             else:
@@ -205,8 +208,6 @@ def register_password():
 
 def log():
     print("\n LOGIN:")
-    global login
-    global password
     l_login = input("\n ENTER A VALID LOGIN: ")
     p_password = getpass.getpass("\n ENTER A VALID PASSWORD: ")
     if l_login != login and p_password != password:
