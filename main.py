@@ -219,7 +219,7 @@ def register_password(name, cep, address, sex, cpf, cel, login):
                 print("SUCCESSFUL REGISTRATION!")
 
                 c.execute('INSERT INTO dados VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                          (1, name, cep, address, sex, cpf, cel, login, password))
+                          (3, name, cep, address, sex, cpf, cel, login, password))
                 connection.commit()
                 c.close()
                 menu()
@@ -246,7 +246,7 @@ def read_data():
     for dado in c.fetchall():
         print(dado)
     c.close()
-    menu()
+    adm_data()
 
 
 def update_data():
@@ -259,7 +259,7 @@ def update_data():
 
     for dado in c.fetchall():
         print(dado)
-    id = 1
+    id = 2
     name = input("n:")
     cep = input("c:")
     address = input("a:")
@@ -271,10 +271,12 @@ def update_data():
 
     c.execute("""
     UPDATE dados
-    SET id = ?, name = ?, cep = ?, address = ?, sex = ?, cpf = ?, cel = ?, login = ?, password = ?
+    SET name = ?, cep = ?, address = ?, sex = ?, cpf = ?, cel = ?, login = ?, password = ?
     WHERE id = ?
     """, (id, name, cep, address, sex, cpf, cel, login, password))
+    connection.commit()
     c.close()
+    read_data()
 
 
 def delete_data():
