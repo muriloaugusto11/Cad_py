@@ -129,17 +129,17 @@ def register_cep(name):
 
     if len(validation_cep) < 8:
         print("CEP FIELD MUST BE 8 CHARACTERS AND YOU PROVIDED: ", len(validation_cep))
-        register_cep()
+        register_cep(name)
     elif len(validation_cep) > 8:
         print("CEP FIELD MUST BE 8 CHARACTERS AND YOU PROVIDED: ", len(validation_cep))
-        register_cep()
+        register_cep(name)
     elif len(validation_cep) == 8:
         if re.match('^[0-9]+$', validation_cep):
             cep = validation_cep
             register_address(name, cep)
         else:
             print("INVALID FORMAT")
-            register_cep()
+            register_cep(name)
 
 
 def register_address(name, cep):
@@ -149,7 +149,7 @@ def register_address(name, cep):
         register_sex(name, cep, address)
     else:
         print("INVALID ADDRESS")
-        register_address()
+        register_address(name, cep)
 
 
 def register_sex(name, cep, address):
@@ -165,28 +165,28 @@ def register_cpf(name, cep, address, sex):
     validation_cpf = input("ENTER A VALID CPF: ")
     if len(validation_cpf) != 11:
         print("CPF FIELD MUST BE 11 CHARACTERS AND YOU PROVIDED: ", len(validation_cpf))
-        register_cpf()
+        register_cpf(name, cep, address, sex)
     elif len(validation_cpf) == 11:
         if re.match('^[0-9]+$', validation_cpf):
             cpf = validation_cpf
             register_cel(name, cep, address, sex, cpf)
         else:
             print("INVALID FORMAT")
-            register_cpf()
+            register_cpf(name, cep, address, sex)
 
 
 def register_cel(name, cep, address, sex, cpf):
     validation_cel = input("ENTER A VALID MOBILE NUMBER: ")
     if len(validation_cel) != 11:
         print("INVALID SIZE, YOU PROVIDE", len(validation_cel), "WHEN IN FACT IT SHOULD BE 11")
-        register_cel()
+        register_cel(name, cep, address, sex, cpf)
     elif len(validation_cel) == 11:
         if re.match('^[0-9]+$', validation_cel):
             cel = validation_cel
             register_login(name, cep, address, sex, cpf, cel)
         else:
             print("INVALID PHONE NUMBER, YOU CANT USE SPECIAL CHARACTERS!")
-            register_cel()
+            register_cel(name, cep, address, sex, cpf)
 
 
 def register_login(name, cep, address, sex, cpf, cel):
@@ -195,14 +195,14 @@ def register_login(name, cep, address, sex, cpf, cel):
     if len(validation_login) < 3 or len(validation_login) > 16:
         print("INVALID LOGIN, LOGIN MUST BR IN 3 CHARACTERS AND A MAXIMUM OF 16 CHARACTERS AND YOU HAVE PROVIDED: ",
               len(validation_login))
-        register_login()
+        register_login(name, cep, address, sex, cpf, cel)
     elif len(validation_login) > 3 and len(validation_login) < 17:
         if re.match('^[a-zA-Z0-9_ ]+$', validation_login):
             login = validation_login
             register_password(name, cep, address, sex, cpf, cel, login)
         else:
             print("INVALID LOGIN, YOU CAN'T USE SPECIAL CHARACTERS!")
-            register_login()
+            register_login(name, cep, address, sex, cpf, cel)
 
 
 def register_password(name, cep, address, sex, cpf, cel, login):
