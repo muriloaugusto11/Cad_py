@@ -275,11 +275,12 @@ def delete_data():
 
     for dado in c.fetchall():
         print(dado)
-        a = 1
+        id = "1"
         c.execute("""
         DELETE FROM dados
-        WHERE a = ?
-        """, (a,))
+        WHERE id = 1
+        """, (id))
+        read_data()
     c.close()
 
 
