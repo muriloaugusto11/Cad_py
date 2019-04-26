@@ -2,6 +2,7 @@ import sqlite3
 import getpass
 import re
 
+#http://pythonclub.com.br/gerenciando-banco-dados-sqlite3-python-parte1.html
 connection = sqlite3.connect('cadastro.db')
 c = connection.cursor()
 
@@ -19,10 +20,9 @@ def menu():
     print("\n Welcome!")
 
     opt = int(input('\n MENU: ' +
-                    '\n\n [1] - REGISTER: ' +
+                    '\n \n [1] - REGISTER: ' +
                     '\n [2] - LOG: ' +
-                    '\n [3] - EXIT: \n' +
-                    '\n [4] - READ(Only ADM)  \n \n '))
+                    '\n [3] - EXIT: \n \n'))
 
 
     if opt == 1:
@@ -36,6 +36,9 @@ def menu():
 
     elif opt == 4:
         read_data()
+    
+    elif opt == 5:
+        print("incompleto")
 
 
 def menu_register():
@@ -80,6 +83,30 @@ def menu_log():
         print("\n INVALID OPTION!")
         menu_log()
 
+def adm_data():
+    print("\n Welcome!")
+
+    opt = int(input('\n ADM: ' +
+                    '\n \n [1] - READ(Only ADM): \n' + 
+                    '\n [2] - UPDATE(Only ADM): \n' + 
+                    '\n [3] - DELETE(Only ADM): \n' + 
+                    '\n [4] - BACKUP(Only ADM): \n' + 
+                    '\n [5] - MAIN MENU: \n \n'))
+
+    if opt == 1:
+        read_data()
+    
+    elif opt == 2:
+        update_data()
+
+    elif opt == 3:
+        delete_data()
+
+    elif opt == 4:
+        print("")
+
+    elif opt == 5:
+        menu()                    
 
 def register():
     print("\n REGISTER:")
@@ -217,6 +244,37 @@ SELECT * FROM dados;
 
 for dado in c.fetchall():
     print(dado)
+menu()
+
+def update_data():
+    c.execute("""
+SELECT * FROM dados;
+""")
+
+for dado in c.fetchall():
+    print(dado)
+a = 1
+c.execute("""
+UPDATE dados
+SET fone = ?, criado_em = ?
+WHERE id = ?
+""", (a, a, a))
+
+def delete_data():
+    c.execute("""
+SELECT * FROM dados;
+""")
+
+for dado in c.fetchall():
+    print(dado)
+a = 1
+c.execute("""
+DELETE FROM dados
+WHERE a = ?
+""", (a,))
+
+def backup_data():
+    print("Incompleto")
 
 
 def log():
