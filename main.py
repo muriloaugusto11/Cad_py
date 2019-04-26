@@ -219,13 +219,3 @@ def log():
 
 
 menu()
-
-'''
-def dataentry():
-    c.execute('INSERT INTO dados VALUES(?, ?, ?)',
-              (1, a, b))
-
-    connection.commit()
-
-dataentry()
-'''
