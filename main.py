@@ -253,13 +253,12 @@ def update_data():
     connection = sqlite3.connect('cadastro.db')
     c = connection.cursor()
 
-    c.execute("""
-    SELECT * FROM dados;
-    """)
+    #c.execute("""
+    #SELECT * FROM dados;
+    #""")
 
     for dado in c.fetchall():
         print(dado)
-    id = 2
     name = input("n:")
     cep = input("c:")
     address = input("a:")
@@ -268,20 +267,22 @@ def update_data():
     cel = input("c:")
     login = input("l:")
     password = input("p:")
+    id = input("i:")
 
     c.execute("""
     UPDATE dados
     SET name = ?, cep = ?, address = ?, sex = ?, cpf = ?, cel = ?, login = ?, password = ?
     WHERE id = ?
-    """, (id, name, cep, address, sex, cpf, cel, login, password))
+    """, (name, cep, address, sex, cpf, cel, login, password, id))
     connection.commit()
+    print("asd")
     c.close()
-    read_data()
 
-
+'''
 def delete_data():
     connection = sqlite3.connect('cadastro.db')
     c = connection.cursor()
+    
     c.execute("""
     SELECT * FROM dados;
     """)
@@ -295,7 +296,7 @@ def delete_data():
     """, (id))
     read_data()
     c.close()
-
+'''
 
 def backup_data():
     print("Incompleto")
