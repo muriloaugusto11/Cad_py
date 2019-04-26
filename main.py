@@ -252,18 +252,29 @@ def read_data():
 def update_data():
     connection = sqlite3.connect('cadastro.db')
     c = connection.cursor()
+
     c.execute("""
     SELECT * FROM dados;
     """)
+
     for dado in c.fetchall():
         print(dado)
-        a = 1
-        c.execute("""
-        UPDATE dados
-        SET fone = ?, criado_em = ?
-        WHERE id = ?
-        """, (a, a, a))
-        c.close()
+    id = 1
+    name = input("n:")
+    cep = input("c:")
+    address = input("a:")
+    sex = input("s:")
+    cpf = input("c:")
+    cel = input("c:")
+    login = input("l:")
+    password = input("p:")
+
+    c.execute("""
+    UPDATE dados
+    SET id = ?, name = ?, cep = ?, address = ?, sex = ?, cpf = ?, cel = ?, login = ?, password = ?
+    WHERE id = ?
+    """, (id, name, cep, address, sex, cpf, cel, login, password))
+    c.close()
 
 
 def delete_data():
@@ -275,12 +286,12 @@ def delete_data():
 
     for dado in c.fetchall():
         print(dado)
-        id = "1"
-        c.execute("""
-        DELETE FROM dados
-        WHERE id = 1
-        """, (id))
-        read_data()
+    id = "1"
+    c.execute("""
+    DELETE FROM dados
+    WHERE id = 1
+    """, (id))
+    read_data()
     c.close()
 
 
