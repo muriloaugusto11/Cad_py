@@ -21,7 +21,9 @@ def menu():
     opt = int(input('\n MENU: ' +
                     '\n\n [1] - REGISTER: ' +
                     '\n [2] - LOG: ' +
-                    '\n [3] - EXIT: \n \n '))
+                    '\n [3] - EXIT: \n' +
+                    '\n [4] - READ(Only ADM)  \n \n '))
+
 
     if opt == 1:
         menu_register()
@@ -31,6 +33,9 @@ def menu():
 
     elif opt == 3:
         print("End Program")
+
+    elif opt == 4:
+        read_data()
 
 
 def menu_register():
@@ -204,6 +209,14 @@ def register_password(name, cep, address, sex, cpf, cel, login):
     else:
         print("THE PASSWORDS NOT MATCH")
         register_password()
+
+def read_data():
+  c.execute("""
+SELECT * FROM dados;
+""")
+
+for dado in c.fetchall():
+    print(dado)
 
 
 def log():
