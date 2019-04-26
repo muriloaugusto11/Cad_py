@@ -3,27 +3,27 @@ import getpass
 import re
 
 #http://pythonclub.com.br/gerenciando-banco-dados-sqlite3-python-parte1.html
-connection = sqlite3.connect('cadastro.db')
-c = connection.cursor()
 
 
 def create_table():
+    connection = sqlite3.connect('cadastro.db')
+    c = connection.cursor()
     c.execute('CREATE TABLE IF NOT EXISTS dados (id integer, name string, cep string, address string, sex string, '
               'cpf string, cel string, login string, password string)')
+    c.close()
 
 
 create_table()
 
 
 def menu():
-
     print("\n Welcome!")
 
     opt = int(input('\n MENU: ' +
                     '\n \n [1] - REGISTER: ' +
                     '\n [2] - LOG: ' +
-                    '\n [3] - EXIT: \n \n'))
-
+                    '\n [3] - CRUD: ' +
+                    '\n [4] - EXIT: \n \n'))
 
     if opt == 1:
         menu_register()
@@ -32,21 +32,17 @@ def menu():
         menu_log()
 
     elif opt == 3:
-        print("End Program")
+        adm_data()
 
     elif opt == 4:
-        read_data()
-    
-    elif opt == 5:
-        print("incompleto")
+        print("End Program")
 
 
 def menu_register():
     opt1 = int(input('\n REGISTER: ' +
-                     '\n \n [1] - MANAGER: ' +
+                     '\n \n [1] - CLIENT: ' +
                      '\n [2] - EMPLOYEE: ' +
-                     '\n [3] - CLIENT: ' +
-                     '\n [4] - BACK TO MAIN MENU: \n \n'))
+                     '\n [3] - BACK TO MAIN MENU: \n \n'))
     if opt1 == 1:
         register()
 
@@ -54,9 +50,6 @@ def menu_register():
         register()
 
     elif opt1 == 3:
-        register()
-
-    elif opt1 == 4:
         menu()
 
     else:
@@ -83,19 +76,20 @@ def menu_log():
         print("\n INVALID OPTION!")
         menu_log()
 
+
 def adm_data():
     print("\n Welcome!")
 
     opt = int(input('\n ADM: ' +
-                    '\n \n [1] - READ(Only ADM): \n' + 
-                    '\n [2] - UPDATE(Only ADM): \n' + 
-                    '\n [3] - DELETE(Only ADM): \n' + 
-                    '\n [4] - BACKUP(Only ADM): \n' + 
+                    '\n \n [1] - READ(Only ADM): \n' +
+                    '\n [2] - UPDATE(Only ADM): \n' +
+                    '\n [3] - DELETE(Only ADM): \n' +
+                    '\n [4] - BACKUP(Only ADM): \n' +
                     '\n [5] - MAIN MENU: \n \n'))
 
     if opt == 1:
         read_data()
-    
+
     elif opt == 2:
         update_data()
 
@@ -106,7 +100,8 @@ def adm_data():
         print("")
 
     elif opt == 5:
-        menu()                    
+        menu()
+
 
 def register():
     print("\n REGISTER:")
@@ -211,6 +206,9 @@ def register_login(name, cep, address, sex, cpf, cel):
 
 
 def register_password(name, cep, address, sex, cpf, cel, login):
+    connection = sqlite3.connect('cadastro.db')
+    c = connection.cursor()
+
     print("\n PASSWORD REGISTER!")
     validation_password = input("ENTER A VALID PASSWORD: ")
     c_password = input("ENTER A EQUAL AND VALID PASSWORD AGAIN TO CONFIRM: ")
@@ -222,9 +220,8 @@ def register_password(name, cep, address, sex, cpf, cel, login):
 
                 c.execute('INSERT INTO dados VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)',
                           (1, name, cep, address, sex, cpf, cel, login, password))
-
                 connection.commit()
-                print("passou")
+                c.close()
                 menu()
 
             else:
@@ -237,41 +234,54 @@ def register_password(name, cep, address, sex, cpf, cel, login):
         print("THE PASSWORDS NOT MATCH")
         register_password()
 
-def read_data():
-  c.execute("""
-SELECT * FROM dados;
-""")
 
-for dado in c.fetchall():
-    print(dado)
-menu()
+def read_data():
+    connection = sqlite3.connect('cadastro.db')
+    c = connection.cursor()
+
+    c.execute("""
+    SELECT * FROM dados;
+    """)
+
+    for dado in c.fetchall():
+        print(dado)
+    c.close()
+    menu()
+
 
 def update_data():
+    connection = sqlite3.connect('cadastro.db')
+    c = connection.cursor()
     c.execute("""
-SELECT * FROM dados;
-""")
+    SELECT * FROM dados;
+    """)
+    for dado in c.fetchall():
+        print(dado)
+        a = 1
+        c.execute("""
+        UPDATE dados
+        SET fone = ?, criado_em = ?
+        WHERE id = ?
+        """, (a, a, a))
+        c.close()
 
-for dado in c.fetchall():
-    print(dado)
-a = 1
-c.execute("""
-UPDATE dados
-SET fone = ?, criado_em = ?
-WHERE id = ?
-""", (a, a, a))
 
 def delete_data():
+    connection = sqlite3.connect('cadastro.db')
+    c = connection.cursor()
     c.execute("""
-SELECT * FROM dados;
-""")
+    SELECT * FROM dados;
+    """)
 
-for dado in c.fetchall():
-    print(dado)
-a = 1
-c.execute("""
-DELETE FROM dados
-WHERE a = ?
-""", (a,))
+    for dado in c.fetchall():
+        print(dado)
+        a = 1
+        c.execute("""
+        DELETE FROM dados
+        WHERE a = ?
+        """, (a,))
+    c.close()
+
 
 def backup_data():
     print("Incompleto")
