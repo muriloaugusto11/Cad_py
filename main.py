@@ -237,7 +237,16 @@ def update_data():
     for dado in c.fetchall():
         print(dado)
 
-    alter_option = input("Digite o nome da coluna que deseja alterar: ")
+    print("Digite o nome da coluna que deseja alterar: ")
+    alter_option = input('\n [1] - Name: ' +
+                         '\n [2] - Cep: ' +
+                         '\n [3] - Address: ' +
+                         '\n [4] - Sex: ' +
+                         '\n [5] - Cpf: ' +
+                         '\n [6] - Cel: ' +
+                         '\n [7] - Login: ' +
+                         '\n [8] - Password: ' +
+                         '\n [9] - EXIT: \n \n')
     value_option = input("Digite o novo valor: ")
     key_option = input("Digite o nome da chave que deseja alterar: ")
     colunas = ["name", "cep", "address", "sex", "cpf", "cel", "login", "password"]
