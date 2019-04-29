@@ -2,13 +2,15 @@ import sqlite3
 import getpass
 import re
 import io
+global id_i
+id_i = 0
 
 
 def create_table():
     connection = sqlite3.connect('cadastro.db')
     c = connection.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS dados (id string, name string, cep string, address string, sex string, '
-              'cpf string, cel string, login string, password string)')
+    c.execute('CREATE TABLE IF NOT EXISTS dados (id_i integer PRIMARY KEY, name string, cep string, address string,'
+              ' sex string, cpf string, cel string, login string, password string)')
     c.close()
 
 
@@ -17,7 +19,6 @@ create_table()
 
 def menu():
     print("\n Welcome!")
-
     opt = int(input('\n MENU: ' +
                     '\n \n [1] - REGISTER CLIENT: ' +
                     '\n [2] - LOG INTO: ' +
@@ -169,7 +170,7 @@ def register_password(name, cep, address, sex, cpf, cel, login):
                 print("SUCCESSFUL REGISTRATION!")
 
                 c.execute('INSERT INTO dados VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                          (3, name, cep, address, sex, cpf, cel, login, password))
+                          (id_i, name, cep, address, sex, cpf, cel, login, password))
                 connection.commit()
                 c.close()
                 menu()
@@ -235,6 +236,29 @@ def update_data():
 
     for dado in c.fetchall():
         print(dado)
+
+    alter_option = input("Digite o nome da coluna que deseja alterar: ")
+    value_option = input("Digite o novo valor: ")
+    key_option = input("Digite o nome da chave que deseja alterar: ")
+    colunas = ["name", "cep", "address", "sex", "cpf", "cel", "login", "password"]
+    ids = ["id_i"]
+
+    for idss in ids:
+        if idss == key_option:
+            for col in colunas:
+                if col == alter_option:
+                    c.execute("""
+                    UPDATE dados
+                    SET ? = ?
+                    WHERE id_i = key_option
+                       """, (alter_option, value_option, key_option))
+                    connection.commit()
+                    c.close()
+                    read_data()
+                    adm_data()
+
+
+'''''''''               
     name = input("n:")
     cep = input("c:")
     address = input("a:")
@@ -243,17 +267,18 @@ def update_data():
     cel = input("c:")
     login = input("l:")
     password = input("p:")
-    id = input("i:")
+    id_i = input("i:")
 
     c.execute("""
     UPDATE dados
     SET name = ?, cep = ?, address = ?, sex = ?, cpf = ?, cel = ?, login = ?, password = ?
-    WHERE id = ?
-    """, (name, cep, address, sex, cpf, cel, login, password, id))
+    WHERE id_i = ?
+    """, (name, cep, address, sex, cpf, cel, login, password, id_i))
     connection.commit()
     c.close()
     read_data()
     adm_data()
+'''''
 
 
 def delete_data():
@@ -266,11 +291,11 @@ def delete_data():
 
     for dado in c.fetchall():
         print(dado)
-    id = input("D")
+    id_i = input("D")
     c.execute("""
     DELETE FROM dados
-    WHERE id = ?
-    """, (id))
+    WHERE id_i = ?
+    """, (id_i))
     connection.commit()
     c.close()
     read_data()
