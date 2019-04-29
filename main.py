@@ -1,6 +1,8 @@
 import sqlite3
 import getpass
 import re
+import io
+from contextlib import closing
 
 
 def create_table():
@@ -204,7 +206,7 @@ def adm_data():
         delete_data()
 
     elif opt == 4:
-        print("")
+        backup_data()
 
     elif opt == 5:
         menu()
@@ -277,7 +279,17 @@ def delete_data():
 
 
 def backup_data():
-    print("Incompleto")
+    connection = sqlite3.connect('cadastro.db')
+    c = connection.cursor()
+
+    with io.open('dados_dump.sql', 'w') as f:
+        for dado in c.iterdump():
+            f.write('%s\n' % dado)
+    #cat clientes_dump.sql
+    print('Backup realizado com sucesso.')
+    print('Salvo como clientes_dump.sql')
+
+    c.close()
 
 
 def log_into():
