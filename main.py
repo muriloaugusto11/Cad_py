@@ -2,7 +2,6 @@ import sqlite3
 import getpass
 import re
 import io
-from contextlib import closing
 
 
 def create_table():
