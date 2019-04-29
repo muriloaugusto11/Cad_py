@@ -9,7 +9,7 @@ id_i = 0
 def create_table():
     connection = sqlite3.connect('cadastro.db')
     c = connection.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS dados (id_i integer, name string, cep string, address string,'
+    c.execute('CREATE TABLE IF NOT EXISTS dados (id_i integer PRIMARY KEY , name string, cep string, address string,'
               ' sex string, cpf string, cel string, login string, password string)')
     c.close()
 
@@ -169,8 +169,8 @@ def register_password(name, cep, address, sex, cpf, cel, login):
                 password = validation_password
                 print("SUCCESSFUL REGISTRATION!")
 
-                c.execute('INSERT INTO dados VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                          (id_i, name, cep, address, sex, cpf, cel, login, password))
+                c.execute('INSERT INTO dados VALUES(1, ?, ?, ?, ?, ?, ?, ?, ?)',
+                          (name, cep, address, sex, cpf, cel, login, password))
                 connection.commit()
                 c.close()
                 menu()
