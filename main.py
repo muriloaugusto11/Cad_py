@@ -9,7 +9,7 @@ id_i = 0
 def create_table():
     connection = sqlite3.connect('cadastro.db')
     c = connection.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS dados (id_i integer PRIMARY KEY, name string, cep string, address string,'
+    c.execute('CREATE TABLE IF NOT EXISTS dados (id_i integer, name string, cep string, address string,'
               ' sex string, cpf string, cel string, login string, password string)')
     c.close()
 
@@ -237,34 +237,35 @@ def update_data():
     for dado in c.fetchall():
         print(dado)
 
-    print("Digite o nome da coluna que deseja alterar: ")
-    alter_option = input('\n [1] - Name: ' +
-                         '\n [2] - Cep: ' +
-                         '\n [3] - Address: ' +
-                         '\n [4] - Sex: ' +
-                         '\n [5] - Cpf: ' +
-                         '\n [6] - Cel: ' +
-                         '\n [7] - Login: ' +
-                         '\n [8] - Password: ' +
-                         '\n [9] - EXIT: \n \n')
-    value_option = input("Digite o novo valor: ")
-    key_option = input("Digite o nome da chave que deseja alterar: ")
-    colunas = ["name", "cep", "address", "sex", "cpf", "cel", "login", "password"]
-    ids = ["id_i"]
+    print("\n Digite o nome da coluna que deseja alterar: ")
+    alter_option = int(input(' [0] - Name: ' +
+                         '\n [1] - Cep: ' +
+                         '\n [2] - Address: ' +
+                         '\n [3] - Sex: ' +
+                         '\n [4] - Cpf: ' +
+                         '\n [5] - Cel: ' +
+                         '\n [6] - Login: ' +
+                         '\n [7] - Password: ' +
+                         '\n [8] - EXIT: \n \n'))
 
-    for idss in ids:
-        if idss == key_option:
-            for col in colunas:
-                if col == alter_option:
-                    c.execute("""
-                    UPDATE dados
-                    SET ? = ?
-                    WHERE id_i = key_option
-                       """, (alter_option, value_option, key_option))
-                    connection.commit()
-                    c.close()
-                    read_data()
-                    adm_data()
+
+    value_option = input("Digite o novo valor: ")
+    key_option = int(input("Digite o nome da chave que deseja alterar: "))
+    colunas = ["name", "cep", "address", "sex", "cpf", "cel", "login", "password"]
+    #ids = ["id_i"]
+    alter_option = colunas[alter_option]
+    print(alter_option)
+    for col in colunas:
+        if col == alter_option:
+            c.execute("""
+            UPDATE dados
+            SET ? = ?
+            WHERE id_i = key_option
+            """, (alter_option, value_option, key_option))
+            connection.commit()
+            c.close()
+            read_data()
+            adm_data()
 
 
 '''''''''               
