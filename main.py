@@ -268,7 +268,6 @@ def update_data():
     login = input("l:")
     password = input("p:")
     id_i = input("i:")
-
     c.execute("""
     UPDATE dados
     SET name = ?, cep = ?, address = ?, sex = ?, cpf = ?, cel = ?, login = ?, password = ?
@@ -303,8 +302,7 @@ def delete_data():
 
 
 def backup_data():
-    connection = sqlite3.connect('cadastro.db')
-    c = connection.cursor()
+    c = sqlite3.connect('cadastro.db')
 
     with io.open('dados_dump.sql', 'w') as f:
         for dado in c.iterdump():
