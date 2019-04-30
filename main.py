@@ -250,7 +250,7 @@ def update_data():
 
 
     value_option = input("Digite o novo valor: ")
-    key_option = int(input("Digite o nome da chave que deseja alterar: "))
+    key_option = input("Digite o nome da chave que deseja alterar: ")
     colunas = ["name", "cep", "address", "sex", "cpf", "cel", "login", "password"]
     #ids = ["id_i"]
     alter_option = colunas[alter_option]
@@ -259,9 +259,8 @@ def update_data():
         if col == alter_option:
             c.execute("""
             UPDATE dados
-            SET ? = ?
-            WHERE id_i = key_option
-            """, (alter_option, value_option, key_option))
+            SET """ + alter_option + """ = ?
+            WHERE id_i = """ + key_option, (value_option,))
             connection.commit()
             c.close()
             read_data()
