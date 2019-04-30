@@ -9,8 +9,8 @@ id_i = 0
 def create_table():
     connection = sqlite3.connect('cadastro.db')
     c = connection.cursor()
-    c.execute('CREATE TABLE IF NOT EXISTS dados (id_i integer PRIMARY KEY , name string, cep string, address string,'
-              ' sex string, cpf string, cel string, login string, password string)')
+    c.execute('CREATE TABLE IF NOT EXISTS dados (id_i integer PRIMARY KEY AUTOINCREMENT, name string,'
+              ' cep string, address string, sex string, cpf string, cel string, login string, password string)')
     c.close()
 
 
@@ -317,8 +317,8 @@ def backup_data():
         for dado in c.iterdump():
             f.write('%s\n' % dado)
     #cat clientes_dump.sql
-    print('Backup realizado com sucesso.')
-    print('Salvo como clientes_dump.sql')
+    print('Success Backup.')
+    print('Save with clientes_dump.sql')
 
     c.close()
 
